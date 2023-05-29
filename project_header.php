@@ -60,7 +60,7 @@
 			<ul class="navbar-nav ml-auto"> 
 			   <?php foreach($menu_list as $menu){?>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="<?=$menu['menu_link']?>"><?=$menu['menu_name']?></a>
+            <a class="nav-link"" href="<?=$menu['menu_link']?>"><?=$menu['menu_name']?></a>
           </li>
         <?php }?>
 			</ul>

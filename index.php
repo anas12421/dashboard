@@ -1,24 +1,33 @@
-<?php require "project_header.php" ?>
+<?php
+session_start();
+ require "project_header.php";
+ require "db_connect.php";
+
+ $banner_select = "SELECT * FROM banner";
+ $banner_select_result = mysqli_query($db_connect,$banner_select);
+ $banner_assoc = mysqli_fetch_assoc($banner_select_result);
+
+?>
 
 <!-- Banner start -->
 
 <!-- Slider Start -->
-<section class="slider py-7 ">
+<section id="banner" class="slider py-7 ">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-lg-5 col-sm-12 col-12 col-md-5">
 				<div class="slider-img position-relative">
-					<img src="/dash/forntend_asset/images/about/9.jpg" alt="" class="img-fluid w-100">
+					<img src="/dash/uploads/banner/<?=$banner_assoc["photo"]?>" alt="" class="img-fluid w-100">
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-12 col-md-7">
 				<div class="ml-5 position-relative mt-5 mt-lg-0">
 					<span class="head-trans">Stephen</span>
-					<h1 class="font-weight-normal text-color text-md"><i class="ti-minus mr-2"></i>Theme Developer</h1>
-					<h2 class="mt-3 text-lg mb-3 text-capitalize">William Stephen.</h2>
-					<p class="animated fadeInUp lead mt-4 mb-5 text-white-50 lh-35">I work in the sweet spot for innovation, somewhere between strategy, design and technology.I love the Web and the work we do.</p>
-					<a href="#about" class="btn btn-solid-border">About Me</a>
+					<h1 class="font-weight-normal text-color text-md"><i class="ti-minus mr-2"></i><?=$banner_assoc["sub_title"]?></h1>
+					<h2 class="mt-3 text-lg mb-3 text-capitalize"><?=$banner_assoc["title"]?></h2>
+					<p class="animated fadeInUp lead mt-4 mb-5 text-white-50 lh-35"><?=$banner_assoc["description"]?></p>
+					<a href="<?=$banner_assoc["action_link"]?>" class="btn btn-solid-border"><?=$banner_assoc["action_btn"]?></a>
 				</div>
 			</div>
 		</div>
@@ -347,29 +356,32 @@
 
 		<div class="row justify-content-center">
 			<div class="col-lg-8">
-					<form class="contact__form form-row contact-form" method="post" action="http://themeturn.com/tf-db/ratsaan/mail.php" id="contactForm">
-					 <div class="row">
-                        <div class="col-12">
-                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                Your message was sent successfully.
-                            </div>
-                        </div>
-                    </div>
+							<?php if(isset( $_SESSION["info_send"])) { ?>
+										<div class="alert alert-success mt-2"><?= $_SESSION["info_send"]?></div>
+							<?php } unset( $_SESSION["info_send"])?>
+					<form class="contact__form form-row contact-form" method="POST" action="/dash/contact/contact_post.php" id="contactForm">
 					<div class="form-group col-lg-6 mb-5">
-						<input type="text" id="name" name="name" class="form-control bg-transparent" placeholder="Your Name">
+						<input type="text" id="name" name="name" class="form-control bg-transparent" placeholder="Your Name" value="<?=(isset($_SESSION["old_name"])?$_SESSION["old_name"]:'')?>">
+							<?php if(isset( $_SESSION["name_err"])) { ?>
+										<div class="alert alert-warning mt-2"><?= $_SESSION["name_err"]?></div>
+							<?php } unset( $_SESSION["name_err"])?>
 					</div>
 					<div class="form-group col-lg-6 mb-5">
-						<input type="text" name="email" id="email" class="form-control bg-transparent" placeholder="Your Email">
+						<input type="text" name="email" id="email" class="form-control bg-transparent" placeholder="Your Email" value="<?=(isset($_SESSION["old_email"])?$_SESSION["old_email"]:'');unset($_SESSION["old_email"]);?>">
+						<?php if(isset( $_SESSION["email_error_message"])) { ?>
+										<div class="alert alert-warning mt-2"><?= $_SESSION["email_error_message"]?></div>
+							<?php } unset( $_SESSION["email_error_message"])?>
 					</div>
 					<div class="form-group col-lg-12 mb-5">
-						<input type="text" name="subject" id="subject" class="form-control bg-transparent" placeholder="Your Subject">
+						<input type="text" name="subject" id="subject" class="form-control bg-transparent" placeholder="Your Subject" value="<?=(isset($_SESSION["old_subject"])?$_SESSION["old_subject"]:'');unset($_SESSION["old_subject"]);?>">
 					</div>
 					
 					<div class="form-group col-lg-12 mb-5">
 						<textarea id="message" name="message" cols="30" rows="6" class="form-control bg-transparent" placeholder="Your Message"></textarea>
 						
 						<div class="text-center">
-							 <input class="btn btn-main text-white mt-5" id="submit" name="submit" type="submit" class="btn btn-hero" value="Send Message">
+							 <!-- <input class="btn btn-main text-white mt-5" id="submit" name="submit" type="submit" class="btn btn-hero" value="Send Message"> -->
+							 <button class="btn btn-main text-white mt-5" id="submit" name="submit" type="submit" class="btn btn-hero">Send Message</button>
 						</div>
 					</div>
 				</form>

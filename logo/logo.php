@@ -1,7 +1,7 @@
 <?php
 session_start();
-require "../login_check.php";
 require "../dash_header.php";
+require "../login_check.php";
 require "../db_connect.php";
 
 $select_logo = "SELECT * FROM logos";
@@ -54,15 +54,23 @@ $footer_logos_assoc =mysqli_fetch_assoc($footer_logos);
                 <h2>Footer Logo</h2>
               </div>
               <div class="card-body">
-                <form action="logo_post.php" method="POST" enctype="multipart/form-data">
-                    <div class="mb-3">
-                      <input type="file" class="form-control" name="footer_logo" onchange="document.getElementById('footer_logo').src = window.URL.createObjectURL(this.files[0])">
-                    </div>
-                    <div class="my-2">
-                    <img id="footer_logo" width="120" src="../uploads/logo/<?=$footer_logos_assoc["logo"]?>" alt="">
-                  </div>
-                    <button class="btn btn-primary" type="submit">Update</button>
-                  </form>
+                    <?php if(isset($_SESSION["footer_error"])){?>
+                      <div class="alert alert-danger"><?=$_SESSION["footer_error"]?></div>
+                    <?php } unset($_SESSION["footer_error"])?>
+
+                    <?php if(isset($_SESSION["footer_logo_add"])){?>
+                      <div class="alert alert-success"><?=$_SESSION["footer_logo_add"]?></div>
+                    <?php } unset($_SESSION["footer_logo_add"])?>
+
+                    <form action="footer_logo_post.php" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                          <input type="file" class="form-control" name="footer_logo" onchange="document.getElementById('footer_logo').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+                        <div class="my-2">
+                        <img id="footer_logo" width="120" src="../uploads/logo/<?=$footer_logos_assoc["logo"]?>" alt="">
+                      </div>
+                        <button class="btn btn-primary" type="submit">Update</button>
+                      </form>
               </div>
             </div>
 				</div>

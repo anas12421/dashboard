@@ -28,10 +28,13 @@ $after_assoc = mysqli_fetch_assoc($select_result);
                     <div class="alert alert-success"><?= $_SESSION["user_profile_update"]?></div>
                 <?php } unset( $_SESSION["user_profile_update"]) ?>
                 <form action="edit_user_post.php" method="POST">
+                <div class="form-group">
+                        <label class="mb-1 text-black"><strong>User ID</strong></label>
+                        <input type="text" readonly class="form-control text-black" name="id" value="<?=$after_assoc["id"]?>">
+                    </div>
                     <div class="form-group">
                         <label class="mb-1 text-black"><strong>Name</strong></label>
                         <input type="text" class="form-control" name="name" value="<?=$after_assoc["name"]?>">
-                        <input type="hidden" class="form-control" name="id" value="<?=$after_assoc["id"]?>">
                     </div>
 
                     <div class="form-group">
