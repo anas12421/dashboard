@@ -38,7 +38,7 @@
 	
 	<!-- Chart piety plugin files -->
     <script src="/dash/vendor/peity/jquery.peity.min.js"></script>
-	
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- Apex Chart -->
 	<script src="/dash/vendor/apexchart/apexchart.js"></script>
 	

@@ -35,7 +35,7 @@ session_start();
                                     <form action="page_register_post.php" method="POST">
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Username</strong></label>
-                                            <input type="text" class="form-control" placeholder="username" name="user_name" value="<?=(isset($_SESSION["old_user_name"])?$_SESSION["old_user_name"]:'');unset($_SESSION["old_user_name"]);?>">
+                                            <input type="text" class="form-control" placeholder="username" name="user_name" style="border: 2px solid transparent; border-color: <?=(isset($_SESSION["user_name_err"])?"red":'')?>;" value="<?=(isset($_SESSION["old_user_name"])?$_SESSION["old_user_name"]:'');unset($_SESSION["old_user_name"]);?>">
                                             <?php if(isset($_SESSION["user_name_err"])){?>
                                                 <div class="alert alert-warning mt-2">
                                                     <?=$_SESSION["user_name_err"]?>
@@ -45,7 +45,7 @@ session_start();
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Email</strong></label>
-                                            <input type="text" class="form-control" placeholder="hello@example.com" name="email" value="<?=(isset($_SESSION["old_email"])?$_SESSION["old_email"]:'');unset($_SESSION["old_email"]);?>">
+                                            <input type="text" class="form-control" placeholder="hello@example.com" name="email" value="<?=(isset($_SESSION["old_email"])?$_SESSION["old_email"]:'');unset($_SESSION["old_email"]);?>" style="border: 2px solid transparent; border-color: <?=(isset($_SESSION["email_error_message"])?"red":'')?>;">
                                             <?php if(isset($_SESSION["email_error_message"])){?>
                                                 <div class="alert alert-warning mt-2">
                                                     <?=$_SESSION["email_error_message"]?>
@@ -55,7 +55,7 @@ session_start();
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
-                                            <input type="password" class="form-control"  name="password" value="<?=(isset($_SESSION["old_password"])?$_SESSION["old_password"]:'');unset($_SESSION["old_password"]);?>">
+                                            <input type="password" class="form-control"  name="password" value="<?=(isset($_SESSION["old_password"])?$_SESSION["old_password"]:'');unset($_SESSION["old_password"]);?>" style="border: 2px solid transparent; border-color: <?=(isset($_SESSION["password_error_message"])?"red":'')?>;">
 
                                             <?php if(isset($_SESSION["password_error_message"])){?>
                                                 <div class="alert alert-warning mt-2">

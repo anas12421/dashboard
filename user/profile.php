@@ -76,6 +76,10 @@ $profile_assoc =mysqli_fetch_assoc($select_profile_res);
                   <div class="alert alert-danger mb-3"><?= $_SESSION["size_err"]?></div>
                 <?php } unset( $_SESSION["size_err"]);?>
 
+              <?php if(isset( $_SESSION["photo_select_err"])){?>
+                  <div class="alert alert-danger mb-3"><?= $_SESSION["photo_select_err"]?></div>
+                <?php } unset( $_SESSION["photo_select_err"]);?>
+
 
                 <form action="profile_photo.php" method="POST" enctype="multipart/form-data">
                   <div class="mb-3">

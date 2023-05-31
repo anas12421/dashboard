@@ -12,16 +12,18 @@ require "dash_header.php";
         ***********************************-->
     <div class="content-body">
             <!-- row -->
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="dash_header">
-                            <h2>Welcome to Dashboard</h2>
-                        </div>
-					</div>
-				</div>
-      </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+               <div class="card">
+               <div class="card-header">
+                    <h2>Welcome to Dashboard</h2>
+                </div>
+               </div>
+            </div>
+        </div>
     </div>
+</div>
         <!--**********************************
             Content body end
         ***********************************-->

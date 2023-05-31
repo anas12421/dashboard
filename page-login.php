@@ -31,14 +31,14 @@ session_start();
                                     <form action="page_login_post.php" method="POST">
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Email</strong></label>
-                                            <input type="email" class="form-control" name="email" value="<?=(isset( $_SESSION["old_email"])? $_SESSION["old_email"]:''); unset( $_SESSION["old_email"]);?>">
+                                            <input type="email" class="form-control" name="email" value="<?=(isset( $_SESSION["old_email"])? $_SESSION["old_email"]:''); unset( $_SESSION["old_email"]);?>" style="border: 2px solid transparent; border-color: <?=(isset($_SESSION["email_exist_err"])?"red":'')?>;">
                                             <?php if(isset($_SESSION["email_exist_err"])){ ?>
                                                 <div class="alert alert-danger mt-2"><?=$_SESSION["email_exist_err"]?></div>
                                             <?php }unset($_SESSION["email_exist_err"]); ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
-                                            <input type="password" class="form-control" name="password" value="<?=(isset( $_SESSION["old_pass"])? $_SESSION["old_pass"]:''); unset( $_SESSION["old_pass"]);?>">
+                                            <input type="password" class="form-control" name="password" value="<?=(isset( $_SESSION["old_pass"])? $_SESSION["old_pass"]:''); unset( $_SESSION["old_pass"]);?>" style="border: 2px solid transparent; border-color: <?=(isset($_SESSION["wrong_pass"])?"red":'')?>;">
                                             <?php if(isset($_SESSION["wrong_pass"])){ ?>
                                                 <div class="alert alert-danger mt-2"><?=$_SESSION["wrong_pass"]?></div>
                                             <?php }unset($_SESSION["wrong_pass"]); ?>

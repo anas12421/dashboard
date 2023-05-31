@@ -55,7 +55,7 @@ if($message){
 
 
 if($contact){
-  header("location:/dash/index.php");
+  header("location:/dash/index.php#contact");
 }
 else{
   $_SESSION["old_name"]='';

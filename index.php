@@ -3,11 +3,23 @@ session_start();
  require "project_header.php";
  require "db_connect.php";
 
+
+//  banner
  $banner_select = "SELECT * FROM banner";
  $banner_select_result = mysqli_query($db_connect,$banner_select);
  $banner_assoc = mysqli_fetch_assoc($banner_select_result);
 
+//  expertise
+
+$select ="SELECT * FROM expertise WHERE status=1";
+ $select_res = mysqli_query($db_connect,$select);
+
+ $select_count = "SELECT COUNT(*) as mot FROM expertise WHERE status =1";
+ $select_count_res = mysqli_query($db_connect,$select_count);
+ $select_count_assoc=mysqli_fetch_assoc($select_count_res);
 ?>
+
+
 
 <!-- Banner start -->
 
@@ -46,18 +58,21 @@ session_start();
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-6 col-md-6">
+
+		<div class="row justify-content-center">
+			<?php foreach($select_res as $expertise_details) {?>
+			<div class="col-lg-<?=($select_count_assoc["mot"]==5)?'4':'6'?>">
 				<div class="skill-bar mb-4 mb-lg-0">
-					<div class="mb-4 text-right"><h4 class="font-weight-normal">Html</h4></div>
+					<div class="mb-4 text-right"><h4 class="font-weight-normal"><?=$expertise_details['topic']?></h4></div>
 					<div class="progress">
-						<div class="progress-bar" data-percent="95">
-							<span class="percent-text"><span class="count">95</span>%</span>
+						<div class="progress-bar" data-percent="<?=$expertise_details['percentage']?>">
+							<span class="percent-text"><span class="count"><?=$expertise_details['percentage']?></span>%</span>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6">
+			<?php } ?>
+			<!-- <div class="col-lg-6 col-md-6">
 				<div class="skill-bar mb-4 mb-lg-0">
 					<div class="mb-4 text-right"><h4 class="font-weight-normal">CSS</h4></div>
 					<div class="progress">
@@ -107,7 +122,7 @@ session_start();
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>	
