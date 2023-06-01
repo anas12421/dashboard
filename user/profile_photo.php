@@ -41,7 +41,8 @@
     header("location:profile.php");
 }
 }else{
-  $delete_from ="../uploads/users/".$select_assoc["photo"];
+  if(in_array($extension,$allowed_ext)){
+    $delete_from ="../uploads/users/".$select_assoc["photo"];
   unlink($delete_from);
 
 if(in_array($extension, $allowed_ext)){
@@ -60,6 +61,10 @@ if(in_array($extension, $allowed_ext)){
           $_SESSION["size_err"] = "Maximum Size 1 MB";
           header("location:profile.php");
     }
+  }else{
+    $_SESSION["ext_err"] = "Photo must be type of (jpg, png, gif, webp)";
+    header("location:profile.php");
+  }
     
 }
 else{

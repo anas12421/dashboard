@@ -17,6 +17,16 @@ $select ="SELECT * FROM expertise WHERE status=1";
  $select_count = "SELECT COUNT(*) as mot FROM expertise WHERE status =1";
  $select_count_res = mysqli_query($db_connect,$select_count);
  $select_count_assoc=mysqli_fetch_assoc($select_count_res);
+
+
+//  service
+
+$select_service_status = "SELECT * FROM services WHERE status=1";
+$select_service_status_res = mysqli_query($db_connect,$select_service_status);
+
+  $select_service_count = "SELECT COUNT(*) as mot FROM services WHERE status =1";
+  $select_service_count_res = mysqli_query($db_connect,$select_service_count);
+  $select_service_count_assoc=mysqli_fetch_assoc($select_service_count_res);
 ?>
 
 
@@ -141,44 +151,16 @@ $select ="SELECT * FROM expertise WHERE status=1";
 			</div>
 		</div>
 
-		<div class="row no-gutters">
-			<div class="col-lg-4 col-md-6">
+		<div class="row no-gutters justify-content-center">
+			<?php foreach($select_service_status_res as $service_item){ ?>
+			<div class="col-lg-<?=$select_service_count_assoc["mot"]==4?'6':'4'?> col-md-6">
 				<div class="card p-5 rounded-0">
-					<h3 class="my-4 text-capitalize">Graphics Branding Design</h3>
-					<p>It can change the way we feel about a company and the products & services they offer.</p>
+					<h3 class="my-4 text-capitalize"><?=$service_item["title"]?></h3>
+					<p><?=$service_item["description"]?></p>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="card p-5 rounded-0">
-					<h3 class="my-4 text-capitalize">Front End Design Development</h3>
-					<p>It can change the way we feel about a company and the products & services they offer.</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="card p-5 rounded-0">
-					<h3 class="my-4 text-capitalize">Digital Content Marketing</h3>
-					<p>It can change the way we feel about a company and the products & services they offer.</p>
-				</div>
-			</div>
+			<?php }?>
 
-			<div class="col-lg-4 col-md-6">
-				<div class="card p-5 rounded-0">
-					<h3 class="my-4 text-capitalize">Application devlopment</h3>
-					<p>It can change the way we feel about a company and the products & services they offer.</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="card p-5 rounded-0">
-					<h3 class="my-4 text-capitalize">Videography Photography</h3>
-					<p>It can change the way we feel about a company and the products & services they offer.</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="card  p-5 rounded-0">
-					<h3 class="my-4 text-capitalize">Wordpress Development</h3>
-					<p>It can change the way we feel about a company and the products & services they offer.</p>
-				</div>
-			</div>
 		</div>
 
 		<div class="row align-items-center mt-5" data-aos="fade-up">

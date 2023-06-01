@@ -866,6 +866,16 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
 													<li><a href="/dash/expertise/expertise_info.php">Expertise Details</a></li>
                         </ul>
                     </li>
+
+                    <li>
+												<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+													<i class="flaticon-381-television"></i>
+													<span class="nav-text">Service</span>
+												</a>
+                        <ul aria-expanded="false">
+													<li><a href="/dash/service/service.php">Service Details</a></li>
+                        </ul>
+                    </li>
 				</ul>
                      
 				<div class="add-menu-sidebar">
