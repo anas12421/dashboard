@@ -4,6 +4,12 @@ require "login_check.php";
 require "db_connect.php";
 require "dash_header.php";
 
+$id =$_GET["id"];
+
+$user_select = "SELECT * FROM users WHERE id =$id";
+$user_select_res= mysqli_query($db_connect,$user_select);
+$user_select_assoc=mysqli_fetch_assoc($user_select_res);
+
 ?>
 
 		
@@ -17,7 +23,7 @@ require "dash_header.php";
             <div class="col-lg-12">
                <div class="card">
                <div class="card-header">
-                    <h2>Welcome to Dashboard</h2>
+                    <h2>Welcome <span style="color: #0B2A97; text-transform: uppercase;"><?=$user_select_assoc["name"]?></span> to Dashboard</h2>
                 </div>
                </div>
             </div>
