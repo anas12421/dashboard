@@ -5,28 +5,50 @@ session_start();
 
 
 //  banner
- $banner_select = "SELECT * FROM banner";
- $banner_select_result = mysqli_query($db_connect,$banner_select);
- $banner_assoc = mysqli_fetch_assoc($banner_select_result);
+	$banner_select = "SELECT * FROM banner";
+	$banner_select_result = mysqli_query($db_connect,$banner_select);
+	$banner_assoc = mysqli_fetch_assoc($banner_select_result);
 
 //  expertise
 
-$select ="SELECT * FROM expertise WHERE status=1";
- $select_res = mysqli_query($db_connect,$select);
+	$select ="SELECT * FROM expertise WHERE status=1";
+	$select_res = mysqli_query($db_connect,$select);
 
- $select_count = "SELECT COUNT(*) as mot FROM expertise WHERE status =1";
- $select_count_res = mysqli_query($db_connect,$select_count);
- $select_count_assoc=mysqli_fetch_assoc($select_count_res);
+	$select_count = "SELECT COUNT(*) as mot FROM expertise WHERE status =1";
+	$select_count_res = mysqli_query($db_connect,$select_count);
+	$select_count_assoc=mysqli_fetch_assoc($select_count_res);
 
 
 //  service
 
-$select_service_status = "SELECT * FROM services WHERE status=1";
-$select_service_status_res = mysqli_query($db_connect,$select_service_status);
+	$select_service_status = "SELECT * FROM services WHERE status=1";
+	$select_service_status_res = mysqli_query($db_connect,$select_service_status);
 
-  $select_service_count = "SELECT COUNT(*) as mot FROM services WHERE status =1";
-  $select_service_count_res = mysqli_query($db_connect,$select_service_count);
-  $select_service_count_assoc=mysqli_fetch_assoc($select_service_count_res);
+	$select_service_count = "SELECT COUNT(*) as mot FROM services WHERE status =1";
+	$select_service_count_res = mysqli_query($db_connect,$select_service_count);
+	$select_service_count_assoc=mysqli_fetch_assoc($select_service_count_res);
+
+// portfolio
+	$select_portfolio="SELECT * FROM portfolios  WHERE status=1";
+	$select_portfolio_result= mysqli_query($db_connect,$select_portfolio);
+
+
+	// $select_portfolio_count="SELECT COUNT(*) as total FROM portfolios WHERE status=1";
+	// $select_portfolio_result_count= mysqli_query($db_connect,$select_portfolio_count);
+	// $select_portfolio_asso_count=mysqli_fetch_assoc($select_portfolio_result_count);
+
+// about
+
+
+$select_about_count = "SELECT * FROM about WHERE status=1";
+$select_about_count_res = mysqli_query($db_connect,$select_about_count);
+// $select_about_count_assoc=mysqli_fetch_assoc($select_about_count_res);
+
+
+
+
+
+
 ?>
 
 
@@ -191,84 +213,21 @@ $select_service_status_res = mysqli_query($db_connect,$select_service_status);
 	<div class="container-fluid">
 		<div class="row">
 			<div class="post_gallery owl-carousel owl-theme">
+				<?php foreach($select_portfolio_result as $portfolio) { ?>
 				<div class="item">
 					<div class="portfolio-item position-relative">
-						<img src="/dash/forntend_asset/images/portfolio/3.jpg" alt="" class="img-fluid">
+						<img src="/dash/uploads/portfolio/<?=$portfolio['photo']?>" alt="" class="img-fluid">
 
 						<div class="portoflio-item-overlay">
-							<a href="portfolio-single.html"><i class="ti-plus"></i></a>
+							<a href="#"><i class="ti-plus"></i></a>
 						</div>
 					</div>
 					<div class="text mt-3">
-						<h4 class="mb-1 text-capitalize">Web development</h4>
-						<p class="text-uppercase letter-spacing text-sm">wordpress</p>
+						<h4 class="mb-1 text-capitalize"><?=$portfolio['title']?></h4>
+						<p class="text-uppercase letter-spacing text-sm"><?=$portfolio['sub_title']?></p>
 					</div>
 				</div>
-				<div class="item">
-					<div class="portfolio-item position-relative">
-						<img src="/dash/forntend_asset/images/portfolio/4.jpg" alt="" class="img-fluid">
-
-						<div class="portoflio-item-overlay">
-							<a href="portfolio-single.html"><i class="ti-plus"></i></a>
-						</div>
-					</div>
-					<div class="text mt-3">
-						<h4 class="mb-1 text-capitalize">Web development</h4>
-						<p class="text-uppercase letter-spacing text-sm">wordpress</p>
-					</div>
-				</div>
-				<div class="item">
-					<div class="portfolio-item position-relative">
-						<img src="/dash/forntend_asset/images/portfolio/5.jpg" alt="" class="img-fluid">
-
-						<div class="portoflio-item-overlay">
-							<a href="portfolio-single.html"><i class="ti-plus"></i></a>
-						</div>
-					</div>
-					<div class="text mt-3">
-						<h4 class="mb-1 text-capitalize">Web development</h4>
-						<p class="text-uppercase letter-spacing text-sm">wordpress</p>
-					</div>
-				</div>
-				<div class="item">
-					<div class="portfolio-item position-relative">
-						<img src="/dash/forntend_asset/images/portfolio/6.jpg" alt="" class="img-fluid">
-
-						<div class="portoflio-item-overlay">
-							<a href="portfolio-single.html"><i class="ti-plus"></i></a>
-						</div>
-					</div>
-					<div class="text mt-3">
-						<h4 class="mb-1 text-capitalize">Web development</h4>
-						<p class="text-uppercase letter-spacing text-sm">wordpress</p>
-					</div>
-				</div>
-				<div class="item">
-					<div class="portfolio-item position-relative">
-						<img src="/dash/forntend_asset/images/portfolio/1.jpg" alt="" class="img-fluid">
-
-						<div class="portoflio-item-overlay">
-							<a href="portfolio-single.html"><i class="ti-plus"></i></a>
-						</div>
-					</div>
-					<div class="text mt-3">
-						<h4 class="mb-1 text-capitalize">Web development</h4>
-						<p class="text-uppercase letter-spacing text-sm">wordpress</p>
-					</div>
-				</div>
-				<div class="item">
-					<div class="portfolio-item position-relative">
-						<img src="/dash/forntend_asset/images/portfolio/2.jpg" alt="" class="img-fluid">
-
-						<div class="portoflio-item-overlay">
-							<a href="portfolio-single.html"><i class="ti-plus"></i></a>
-						</div>
-					</div>
-					<div class="text mt-3">
-						<h4 class="mb-1 text-capitalize">Web development</h4>
-						<p class="text-uppercase letter-spacing text-sm">wordpress</p>
-					</div>
-				</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
@@ -290,48 +249,23 @@ $select_service_status_res = mysqli_query($db_connect,$select_service_status);
 		<div class="row justify-content-center">
 			<div class="col-lg-10">
 				<div class="testimonial-slider">
+					<?php foreach($select_about_count_res as $about_item) { ?>
+					
 					<div class="testimonial-item position-relative">
 						<i class="ti-quote-left text-white-50"></i>
 						<div class="testimonial-content">
-							<p class="text-md mt-3">They do this through collaboration between our strategists, designers and technologists.They craft beautiful and unique digital experiences.Unlimited power and customization possibilities.Pixel perfect design & clear code delivered to you.</p>
+							<p class="text-md mt-3"><?=$about_item['message']?></p>
 
 							<div class="media mt-5 align-items-center">
-								<img src="/dash/forntend_asset/images/about/2.jpg" alt="" class="img-fluid  rounded-circle align-self-center mr-4">
+								<img src="/dash/uploads/about/<?=$about_item['photo']?>" alt="" class="img-fluid  rounded-circle align-self-center mr-4">
 								<div class="media-body">
-									<h3 class="mb-0">John Smith</h3>
-									<span class="text-muted">Creative Designer</span>
+									<h3 class="mb-0"><?=$about_item['name']?></h3>
+									<span class="text-muted"><?=$about_item['title']?></span>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="testimonial-item position-relative">
-						<i class="ti-quote-left text-white-50"></i>
-						<div class="testimonial-content">
-							<p class="text-md mt-3">They do this through collaboration between our strategists, designers and technologists.They craft beautiful and unique digital experiences.Unlimited power and customization possibilities.Pixel perfect design & clear code delivered to you.</p>
-
-							<div class="media mt-5 align-items-center">
-								<img src="/dash/forntend_asset/images/about/3.jpg" alt="" class="img-fluid  rounded-circle align-self-center mr-4">
-								<div class="media-body">
-									<h3 class="mb-0">Smith Austin</h3>
-									<span class="text-muted">Developer</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="testimonial-item position-relative">
-						<i class="ti-quote-left text-white-50"></i>
-						<div class="testimonial-content">
-							<p class="text-md mt-3">They do this through collaboration between our strategists, designers and technologists.They craft beautiful and unique digital experiences.Unlimited power and customization possibilities.Pixel perfect design & clear code delivered to you.</p>
-
-							<div class="media mt-5 align-items-center">
-								<img src="/dash/forntend_asset/images/about/3.jpg" alt="" class="img-fluid  rounded-circle align-self-center mr-4">
-								<div class="media-body">
-									<h3 class="mb-0">Mike jack</h3>
-									<span class="text-muted">Marketer</span>
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php } ?>
 				</div>
 			</div>	
 		</div>

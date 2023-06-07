@@ -788,7 +788,7 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
             <div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
                     <li>
-											<a class="has-arrow ai-icon" href="/dash/dashboard.php">
+											<a class="has-arrow ai-icon" href="/dash/dashboard.php?id=<?=$user_assoc['id']?>">
 												<i class="flaticon-381-networking"></i>
 												<span class="nav-text">Dashboard</span>
 											</a>
@@ -874,6 +874,26 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
 												</a>
                         <ul aria-expanded="false">
 													<li><a href="/dash/service/service.php">Service Details</a></li>
+                        </ul>
+                    </li>
+                    <li>
+												<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+													<i class="flaticon-381-television"></i>
+													<span class="nav-text">Portfolio</span>
+												</a>
+                        <ul aria-expanded="false">
+													<li><a href="/dash/portfolio/portfolio.php">Portfolio Details</a></li>
+                        </ul>
+                    </li>
+
+										
+                    <li>
+												<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+													<i class="flaticon-381-television"></i>
+													<span class="nav-text">About</span>
+												</a>
+                        <ul aria-expanded="false">
+													<li><a href="/dash/about/about.php">About Details</a></li>
                         </ul>
                     </li>
 				</ul>

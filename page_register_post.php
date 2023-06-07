@@ -21,6 +21,9 @@ if(!$usesr_name){
 }
 
 
+
+
+
 if(!$email){
   $form = true;
   $_SESSION["email_error_message"] = "Please Enter a Valid Email";
@@ -46,6 +49,11 @@ if(!$email){
     }
   }
 }
+
+
+
+
+
 
 if(!$password){
   $form = true;
