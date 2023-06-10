@@ -38,7 +38,7 @@ $contatc_info =mysqli_query($db_connect, $select);
                 <td ><?=$contatc_list['name']?></td>
                 <td ><?=$contatc_list['email']?></td>
                 <td ><?=$contatc_list['subject']?></td>
-                <td ><?=$contatc_list['message']?></td>
+                <td ><?=substr($contatc_list['message'],0,15).'......'?></td>
                 <td >
                   <a href="view_contact.php?id=<?=$contatc_list['id']?>" class="btn btn-<?=($contatc_list['status']==0)?'light':'success'?>"><?=($contatc_list['status']==0)?'Unread':'Read'?></a>
                 </td>

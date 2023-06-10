@@ -8,121 +8,6 @@ $user_select = "SELECT * FROM users WHERE id =$user_id";
 $select_user_result = mysqli_query($db_connect , $user_select);
 $user_assoc = mysqli_fetch_assoc($select_user_result);
 
-// All Titles
-
-// user title
-if(in_array('user',$after_explode_title)){
-	if(in_array('user_list',$explode_second)){
-		$title = 'Users List';
-	}
-
-	if(in_array('edit_user',$explode_second)){
-		$title = 'Users Edit';
-	}
-
-	if(in_array('profile',$explode_second)){
-		$title = 'Profile';
-	}
-
-}
-
-
-else{
-	$title = 'Dashboard';
-}
-
-
-// menu_title
-if(in_array('menu',$after_explode_title)){
-	if(in_array('menu_list',$explode_second)){
-		$title = 'Menu List';
-	}
-
-	if(in_array('add_menu',$explode_second)){
-		$title = 'Menu Add';
-	}
-
-	if(in_array('edit_menu',$explode_second)){
-		$title = 'Menu Edit';
-	}
-
-}
-
-// expertise_title
-if(in_array('expertise',$after_explode_title)){
-	if(in_array('expertise_info',$explode_second)){
-		$title = 'Expertise Details';
-	}
-
-	if(in_array('edit_expertise',$explode_second)){
-		$title = 'Expertise Edit';
-	}
-
-	// if(in_array('edit_menu',$explode_second)){
-	// 	$title = 'Menu Edit';
-	// }
-
-}
-
-// logo_title
-if(in_array('logo',$after_explode_title)){
-	$title = 'Logo Details';
-
-}
-
-// Banner_title
-if(in_array('banner',$after_explode_title)){
-	$title = 'Banner Details';
-
-}
-
-// contact title
-if(in_array('contact',$after_explode_title)){
-	if(in_array('contact_info',$explode_second)){
-		$title = 'Contact Info List';
-	}
-
-	if(in_array('view_contact',$explode_second)){
-		$title = 'Contact View';
-	}
-}
-
-// about title
-if(in_array('about',$after_explode_title)){
-	if(in_array('about',$explode_second)){
-		$title = 'About Details';
-	}
-
-	if(in_array('edit_about',$explode_second)){
-		$title = 'About Edit';
-	}
-
-}
-
-// service title
-if(in_array('service',$after_explode_title)){
-	if(in_array('service',$explode_second)){
-		$title = 'Service Details';
-	}
-
-	if(in_array('edit_service',$explode_second)){
-		$title = 'Service Edit';
-	}
-
-}
-
-// portfolio title
-if(in_array('portfolio',$after_explode_title)){
-	if(in_array('portfolio',$explode_second)){
-		$title = 'Portfolio Details';
-	}
-
-	if(in_array('edit_portfolio',$explode_second)){
-		$title = 'Portfolio Edit';
-	}
-
-}
-
 
 
 
@@ -146,17 +31,18 @@ if(in_array('portfolio',$after_explode_title)){
     <title><?=$title?></title>
 		<!-- <title>Dash</title> -->
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/dash/images/favicon.png">
-	<link rel="stylesheet" href="/dash/vendor/chartist/css/chartist.min.css">
-    <link href="/dash/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
-	<link href="/dash/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link href="/dash/css/style.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	<style>
-		.card{
-			height: auto;
-		}
-	</style>
+		<link rel="shortcut icon" href="/dash/images/favicon.png" type="image/x-icon">
+		<!-- <link rel="icon" type="image/png" sizes="16x16" href=""> -->
+		<link rel="stylesheet" href="/dash/vendor/chartist/css/chartist.min.css">
+		<link href="/dash/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+		<link href="/dash/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
+		<link href="/dash/css/style.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+			<style>
+				.card{
+					height: auto;
+				}
+			</style>
 </head>
 <body>
 
