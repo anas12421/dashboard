@@ -2,7 +2,21 @@
   session_start();
   require "../login_check.php";
   require "../db_connect.php";
-  require "../dash_header.php"
+  require "../dash_header.php";
+  require "../title.php";
+
+  // if(in_array('menu',$after_explode_title)){
+  //   if(in_array('add_menu',$explode_second)){
+  //     $title = 'Add Menu';
+  //   }
+  
+  // }
+  // else{
+  //   $title = 'Dashboard';
+  // }
+
+
+
 ?>
 
 

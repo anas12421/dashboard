@@ -1,6 +1,6 @@
 <?php
   require "db_connect.php";
-  $select = "SELECT * FROM menu";
+  $select = "SELECT * FROM menu WHERE status=1";
   $menu_list =mysqli_query($db_connect, $select);
 
   $select_logo = "SELECT * FROM logos";

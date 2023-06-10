@@ -29,6 +29,7 @@ $contatc_info =mysqli_query($db_connect, $select);
                 <th >EMAIL</th>
                 <th >SUBJECT</th>
                 <th >MESSAGEE</th>
+                <th >STATUS</th>
                 <th class="text-center" >ACTION</th>
               </tr>
               <?php foreach($contatc_info as $key=>$contatc_list){?>
@@ -38,6 +39,9 @@ $contatc_info =mysqli_query($db_connect, $select);
                 <td ><?=$contatc_list['email']?></td>
                 <td ><?=$contatc_list['subject']?></td>
                 <td ><?=$contatc_list['message']?></td>
+                <td >
+                  <a href="view_contact.php?id=<?=$contatc_list['id']?>" class="btn btn-<?=($contatc_list['status']==0)?'light':'success'?>"><?=($contatc_list['status']==0)?'Unread':'Read'?></a>
+                </td>
                 <td class="d-flex justify-content-center">
 									<a href="delete_contact.php?id=<?=$contatc_list['id']?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                 </td>

@@ -5,20 +5,22 @@ require "../db_connect.php";
 
 $name = $_POST["name"];
 $email = $_POST["email"];
-$password = password_hash($_POST["password"],PASSWORD_DEFAULT);
+$password =$_POST["password"];
 $id = $_POST["id"];
+
 
 if(!$password){
   $update = "UPDATE users SET name = '$name',email='$email' WHERE id =$id";
   mysqli_query($db_connect,$update);
-   $_SESSION["user_profile_update"]="User Profile Updated";
-  header("location:edit_user.php?id=".$id);
+  $_SESSION["user_profile_update"]="User Profile Updated";
+  header("location:edit_user.php?id=$id");
 
 }
 else{
-  $update = "UPDATE users SET name = '$name',email='$email',password='$password' WHERE id =$id";
+  $after_hash =password_hash($password,PASSWORD_DEFAULT);
+  $update = "UPDATE users SET name = '$name',email='$email',password='$after_hash' WHERE id =$id";
   mysqli_query($db_connect,$update);
    $_SESSION["user_profile_update"]="User Profile Updated";
-  header("location:edit_user.php?id=".$id);
+  header("location:edit_user.php?id=$id");
 }
 ?>

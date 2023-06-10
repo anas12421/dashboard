@@ -15,8 +15,8 @@ $select_status_assoc=mysqli_fetch_assoc($select_status_res);
 if($select_status_assoc["status"] == 0){
 
 
-  if($select_count_assoc["mot"] >= 5){
-   $_SESSION["max"]="Max 5 item";
+  if($select_count_assoc["mot"] >= 10){
+   $_SESSION["max"]="Max 10 item";
    header("location:about.php");
   }
   else{

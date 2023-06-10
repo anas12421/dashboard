@@ -130,10 +130,13 @@ session_start();
 <?php if(isset($_SESSION['about_add'])) {?>
 <script>
   Swal.fire({
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 1500,
   icon: 'success',
   title: 'Success',
   text: '<?=$_SESSION['about_add']?>',
-  // footer: '<a href="">Why do I have this issue?</a>'
+
 })
 </script>
 <?php } unset($_SESSION['about_add'])?>
@@ -144,10 +147,10 @@ session_start();
 <?php if(isset($_SESSION['min'])) {?>
 <script>
   Swal.fire({
-    icon: 'error',
+    
+  icon: 'error',
   title: 'Oops...',
   text: '<?=$_SESSION['min']?>',
-  // footer: '<a href="">Why do I have this issue?</a>'
 })
 </script>
 <?php } unset($_SESSION['min'])?>
@@ -158,10 +161,9 @@ session_start();
 <?php if(isset($_SESSION['max'])) {?>
 <script>
   Swal.fire({
-    icon: 'error',
+  icon: 'error',
   title: 'Oops...',
   text: '<?=$_SESSION['max']?>',
-  // footer: '<a href="">Why do I have this issue?</a>'
 })
 </script>
 <?php } unset($_SESSION['max'])?>

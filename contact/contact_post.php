@@ -2,11 +2,14 @@
 session_start();
 require "../db_connect.php";
 
+
+
 $name = $_POST["name"];
 $email = $_POST["email"];
 $subject = $_POST["subject"];
 $message = $_POST["message"];
-
+date_default_timezone_set("Asia/Dhaka");
+$time= date("Y-m-d h:i:s");
 $contact = false;
 
 
@@ -63,7 +66,7 @@ else{
   $_SESSION["old_subject"]='';
   $_SESSION["old_message"]='';
 
-  $insert = "INSERT INTO contact(name,email,subject,message)VALUES('$name','$email','$subject','$message')";
+  $insert = "INSERT INTO contact(name,email,subject,message,time)VALUES('$name','$email','$subject','$message','$time')";
   mysqli_query($db_connect,$insert);
 
 

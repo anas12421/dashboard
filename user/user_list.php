@@ -3,7 +3,22 @@ session_start();
 require '../login_check.php';
 require '../db_connect.php';
 require '../dash_header.php';
+require '../title.php';
 
+
+// if(in_array('user',$after_explode_title)){
+// 	if(in_array('user_list',$explode_second)){
+// 		$title = 'Users List';
+// 	}
+
+// 	if(in_array('edit_user',$explode_second)){
+// 		$title = 'Users Edit';
+// 	}
+
+// }
+// else{
+// 	$title = 'Dashboard';
+// }
 
 $id= $_SESSION["id"];
 $select = "SELECT * FROM users WHERE id != $id";

@@ -1,11 +1,140 @@
 <?php
 session_start();
 require "db_connect.php";
+require "title.php";
 
 $user_id = $_SESSION["id"];
 $user_select = "SELECT * FROM users WHERE id =$user_id";
 $select_user_result = mysqli_query($db_connect , $user_select);
 $user_assoc = mysqli_fetch_assoc($select_user_result);
+
+// All Titles
+
+// user title
+if(in_array('user',$after_explode_title)){
+	if(in_array('user_list',$explode_second)){
+		$title = 'Users List';
+	}
+
+	if(in_array('edit_user',$explode_second)){
+		$title = 'Users Edit';
+	}
+
+	if(in_array('profile',$explode_second)){
+		$title = 'Profile';
+	}
+
+}
+
+
+else{
+	$title = 'Dashboard';
+}
+
+
+// menu_title
+if(in_array('menu',$after_explode_title)){
+	if(in_array('menu_list',$explode_second)){
+		$title = 'Menu List';
+	}
+
+	if(in_array('add_menu',$explode_second)){
+		$title = 'Menu Add';
+	}
+
+	if(in_array('edit_menu',$explode_second)){
+		$title = 'Menu Edit';
+	}
+
+}
+
+// expertise_title
+if(in_array('expertise',$after_explode_title)){
+	if(in_array('expertise_info',$explode_second)){
+		$title = 'Expertise Details';
+	}
+
+	if(in_array('edit_expertise',$explode_second)){
+		$title = 'Expertise Edit';
+	}
+
+	// if(in_array('edit_menu',$explode_second)){
+	// 	$title = 'Menu Edit';
+	// }
+
+}
+
+// logo_title
+if(in_array('logo',$after_explode_title)){
+	$title = 'Logo Details';
+
+}
+
+// Banner_title
+if(in_array('banner',$after_explode_title)){
+	$title = 'Banner Details';
+
+}
+
+// contact title
+if(in_array('contact',$after_explode_title)){
+	if(in_array('contact_info',$explode_second)){
+		$title = 'Contact Info List';
+	}
+
+	if(in_array('view_contact',$explode_second)){
+		$title = 'Contact View';
+	}
+}
+
+// about title
+if(in_array('about',$after_explode_title)){
+	if(in_array('about',$explode_second)){
+		$title = 'About Details';
+	}
+
+	if(in_array('edit_about',$explode_second)){
+		$title = 'About Edit';
+	}
+
+}
+
+// service title
+if(in_array('service',$after_explode_title)){
+	if(in_array('service',$explode_second)){
+		$title = 'Service Details';
+	}
+
+	if(in_array('edit_service',$explode_second)){
+		$title = 'Service Edit';
+	}
+
+}
+
+// portfolio title
+if(in_array('portfolio',$after_explode_title)){
+	if(in_array('portfolio',$explode_second)){
+		$title = 'Portfolio Details';
+	}
+
+	if(in_array('edit_portfolio',$explode_second)){
+		$title = 'Portfolio Edit';
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +143,8 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dashboard</title>
+    <title><?=$title?></title>
+		<!-- <title>Dash</title> -->
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/dash/images/favicon.png">
 	<link rel="stylesheet" href="/dash/vendor/chartist/css/chartist.min.css">
@@ -53,7 +183,7 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
+            <a href="/dash/dashboard.php" class="brand-logo">
                 <img class="logo-abbr" src="/dash/images/logo.png" alt="">
                 <img class="logo-compact" src="/dash/images/logo-text.png" alt="">
                 <img class="brand-title" src="/dash/images/logo-text.png" alt="">
@@ -597,83 +727,43 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
                                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M22.75 15.8385V13.0463C22.7471 10.8855 21.9385 8.80353 20.4821 7.20735C19.0258 5.61116 17.0264 4.61555 14.875 4.41516V2.625C14.875 2.39294 14.7828 2.17038 14.6187 2.00628C14.4546 1.84219 14.2321 1.75 14 1.75C13.7679 1.75 13.5454 1.84219 13.3813 2.00628C13.2172 2.17038 13.125 2.39294 13.125 2.625V4.41534C10.9736 4.61572 8.97429 5.61131 7.51794 7.20746C6.06159 8.80361 5.25291 10.8855 5.25 13.0463V15.8383C4.26257 16.0412 3.37529 16.5784 2.73774 17.3593C2.10019 18.1401 1.75134 19.1169 1.75 20.125C1.75076 20.821 2.02757 21.4882 2.51969 21.9803C3.01181 22.4724 3.67904 22.7492 4.375 22.75H9.71346C9.91521 23.738 10.452 24.6259 11.2331 25.2636C12.0142 25.9013 12.9916 26.2497 14 26.2497C15.0084 26.2497 15.9858 25.9013 16.7669 25.2636C17.548 24.6259 18.0848 23.738 18.2865 22.75H23.625C24.321 22.7492 24.9882 22.4724 25.4803 21.9803C25.9724 21.4882 26.2492 20.821 26.25 20.125C26.2486 19.117 25.8998 18.1402 25.2622 17.3594C24.6247 16.5786 23.7374 16.0414 22.75 15.8385ZM7 13.0463C7.00232 11.2113 7.73226 9.45223 9.02974 8.15474C10.3272 6.85726 12.0863 6.12732 13.9212 6.125H14.0788C15.9137 6.12732 17.6728 6.85726 18.9703 8.15474C20.2677 9.45223 20.9977 11.2113 21 13.0463V15.75H7V13.0463ZM14 24.5C13.4589 24.4983 12.9316 24.3292 12.4905 24.0159C12.0493 23.7026 11.716 23.2604 11.5363 22.75H16.4637C16.284 23.2604 15.9507 23.7026 15.5095 24.0159C15.0684 24.3292 14.5411 24.4983 14 24.5ZM23.625 21H4.375C4.14298 20.9999 3.9205 20.9076 3.75644 20.7436C3.59237 20.5795 3.50014 20.357 3.5 20.125C3.50076 19.429 3.77757 18.7618 4.26969 18.2697C4.76181 17.7776 5.42904 17.5008 6.125 17.5H21.875C22.571 17.5008 23.2382 17.7776 23.7303 18.2697C24.2224 18.7618 24.4992 19.429 24.5 20.125C24.4999 20.357 24.4076 20.5795 24.2436 20.7436C24.0795 20.9076 23.857 20.9999 23.625 21Z" fill="#0B2A97"/>
 									</svg>
-									<div class="pulse-css"></div>
+
+								<?php
+									$select_contact = "SELECT COUNT(*) as unread FROM contact WHERE status=0";
+									$select_contact_res=mysqli_query($db_connect,$select_contact);
+									$select_contact_assoc=mysqli_fetch_assoc($select_contact_res);
+								?>
+									<div class="pulse-css text-center"><strong><?=$select_contact_assoc['unread']?></strong></div>
                                 </a>
-                                <div class="dropdown-menu rounded dropdown-menu-right">
-                                    <div id="DZ_W_Notification1" class="widget-media dz-scroll p-3 height380">
-										<ul class="timeline">
-											<li>
-												<div class="timeline-panel">
-													<div class="media mr-2">
-														<img alt="image" width="50" src="images/avatar/1.jpg">
-													</div>
+								<div class="dropdown-menu rounded dropdown-menu-right">
+										<div id="DZ_W_Notification1" class="widget-media dz-scroll p-3 height380">
+											<?php
+											$select_contact_message = "SELECT * FROM contact WHERE status =0";
+											$select_contact_message_res =mysqli_query($db_connect,$select_contact_message);
+											?>
+											<ul class="timeline">
+												<?php foreach($select_contact_message_res as $contact){ ?>
+													<li>
+													<a href="/dash/contact/view_contact.php?id=<?=$contact['id']?>">
+													<div class="timeline-panel">
 													<div class="media-body">
-														<h6 class="mb-1">Dr sultads Send you Photo</h6>
-														<small class="d-block">29 July 2020 - 02:26 PM</small>
+													<h6 class="mb-1"><?=$contact['name']?></h6>
+													<small class="d-block"><?=$contact['time']?></small>
 													</div>
-												</div>
-											</li>
-											<li>
-												<div class="timeline-panel">
-													<div class="media mr-2 media-info">
-														KG
-													</div>
-													<div class="media-body">
-														<h6 class="mb-1">Resport created successfully</h6>
-														<small class="d-block">29 July 2020 - 02:26 PM</small>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="timeline-panel">
-													<div class="media mr-2 media-success">
-														<i class="fa fa-home"></i>
-													</div>
-													<div class="media-body">
-														<h6 class="mb-1">Reminder : Treatment Time!</h6>
-														<small class="d-block">29 July 2020 - 02:26 PM</small>
-													</div>
-												</div>
-											</li>
-											 <li>
-												<div class="timeline-panel">
-													<div class="media mr-2">
-														<img alt="image" width="50" src="images/avatar/1.jpg">
-													</div>
-													<div class="media-body">
-														<h6 class="mb-1">Dr sultads Send you Photo</h6>
-														<small class="d-block">29 July 2020 - 02:26 PM</small>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="timeline-panel">
-													<div class="media mr-2 media-danger">
-														KG
-													</div>
-													<div class="media-body">
-														<h6 class="mb-1">Resport created successfully</h6>
-														<small class="d-block">29 July 2020 - 02:26 PM</small>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="timeline-panel">
-													<div class="media mr-2 media-primary">
-														<i class="fa fa-home"></i>
-													</div>
-													<div class="media-body">
-														<h6 class="mb-1">Reminder : Treatment Time!</h6>
-														<small class="d-block">29 July 2020 - 02:26 PM</small>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-                                    <a class="all-notification" href="javascript:void(0)">See all notifications <i class="ti-arrow-right"></i></a>
-                                </div>
+													</div></a>
+													</li>
+													<?php } ?>
+
+													<?php if($select_contact_message_res->num_rows == 0) { ?>
+														<li>No New Mesages</li>
+													<?php } ?>
+													
+											</ul>												
+										</div>
+										<a class="all-notification" href="/dash/contact/contact_info.php">See all notifications <i class="ti-arrow-right"></i></a>
+								</div>
                             </li>
-							<li class="nav-item dropdown notification_dropdown">
+							<!-- <li class="nav-item dropdown notification_dropdown">
                                 <a class="nav-link bell bell-link" href="javascript:void(0)">
                                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M22.4605 3.84888H5.31688C4.64748 3.84961 4.00571 4.11586 3.53237 4.58919C3.05903 5.06253 2.79279 5.7043 2.79205 6.3737V18.1562C2.79279 18.8256 3.05903 19.4674 3.53237 19.9407C4.00571 20.4141 4.64748 20.6803 5.31688 20.6811C5.54005 20.6812 5.75404 20.7699 5.91184 20.9277C6.06964 21.0855 6.15836 21.2995 6.15849 21.5227V23.3168C6.15849 23.6215 6.24118 23.9204 6.39774 24.1818C6.5543 24.4431 6.77886 24.6571 7.04747 24.8009C7.31608 24.9446 7.61867 25.0128 7.92298 24.9981C8.22729 24.9834 8.52189 24.8863 8.77539 24.7173L14.6173 20.8224C14.7554 20.7299 14.918 20.6807 15.0842 20.6811H19.187C19.7383 20.68 20.2743 20.4994 20.7137 20.1664C21.1531 19.8335 21.4721 19.3664 21.6222 18.8359L24.8966 7.05011C24.9999 6.67481 25.0152 6.28074 24.9414 5.89856C24.8675 5.51637 24.7064 5.15639 24.4707 4.84663C24.235 4.53687 23.931 4.28568 23.5823 4.11263C23.2336 3.93957 22.8497 3.84931 22.4605 3.84888ZM23.2733 6.60304L20.0006 18.3847C19.95 18.5614 19.8432 18.7168 19.6964 18.8275C19.5496 18.9381 19.3708 18.9979 19.187 18.9978H15.0842C14.5856 18.9972 14.0981 19.1448 13.6837 19.4219L7.84171 23.3168V21.5227C7.84097 20.8533 7.57473 20.2115 7.10139 19.7382C6.62805 19.2648 5.98628 18.9986 5.31688 18.9978C5.09371 18.9977 4.87972 18.909 4.72192 18.7512C4.56412 18.5934 4.4754 18.3794 4.47527 18.1562V6.3737C4.4754 6.15054 4.56412 5.93655 4.72192 5.77874C4.87972 5.62094 5.09371 5.53223 5.31688 5.5321H22.4605C22.5905 5.53243 22.7188 5.56277 22.8353 5.62076C22.9517 5.67875 23.0532 5.76283 23.1318 5.86646C23.2105 5.97008 23.2642 6.09045 23.2887 6.21821C23.3132 6.34597 23.308 6.47766 23.2733 6.60304Z" fill="#0B2A97"/>
@@ -744,7 +834,7 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
 										</ul>
 									</div>
 								</div>
-							</li>
+							</li> -->
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
 																	<?php if($user_assoc["photo"] == null){ ?>
@@ -752,17 +842,17 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
 																	<?php } else{ ?>
 																		<img src="/dash/uploads/users/<?=$user_assoc['photo']?>"  alt="profile_image"/>
 																	<?php } ?>
-									<div class="header-info">
-										<span class="text-black"><strong><?= $user_assoc['name'] ?></strong></span>
-										<p class="fs-12 mb-0"><?= $user_assoc['email'] ?></p>
-									</div>
+															<div class="header-info">
+																<span class="text-black"><strong><?= $user_assoc['name'] ?></strong></span>
+																<p class="fs-12 mb-0"><?= $user_assoc['email'] ?></p>
+															</div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="/dash/user/profile.php" class="dropdown-item ai-icon">
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                         <span class="ml-2">Profile </span>
                                     </a>
-                                    <a href="./email-inbox.html" class="dropdown-item ai-icon">
+                                    <a href="/dash/dashboard.php" class="dropdown-item ai-icon">
                                         <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                         <span class="ml-2">Inbox </span>
                                     </a>
@@ -788,8 +878,8 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
             <div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
                     <li>
-											<a class="has-arrow ai-icon" href="/dash/dashboard.php?id=<?=$user_assoc['id']?>">
-												<i class="flaticon-381-networking"></i>
+											<a class="" href="/dash/dashboard.php?id=<?=$user_assoc['id']?>">
+												<!-- <i class="flaticon-381-networking"></i> -->
 												<span class="nav-text">Dashboard</span>
 											</a>
             <!-- <ul aria-expanded="false">
@@ -807,7 +897,7 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
 													<span class="nav-text">User</span>
 												</a>
                         <ul aria-expanded="false">
-                            <li><a href="/dash/user/profile.php">Profile</a></li>
+                            <!-- <li><a href="/dash/user/profile.php">Profile</a></li> -->
                             <li><a href="/dash/user/user_list.php">User List</a></li>
 
                         </ul>
@@ -819,8 +909,8 @@ $user_assoc = mysqli_fetch_assoc($select_user_result);
 													<span class="nav-text">Menu</span>
 												</a>
                         <ul aria-expanded="false">
-													<li><a href="/dash/user/menu_list.php">Menu list</a></li>
-                            <li><a href="/dash/user/menu.php">Add Menu</a></li>
+													<li><a href="/dash/menu/menu_list.php">Menu list</a></li>
+                            <li><a href="/dash/menu/add_menu.php">Add Menu</a></li>
 
                         </ul>
                     </li>
