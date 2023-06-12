@@ -5,6 +5,11 @@
   $footer_logo =mysqli_query($db_connect, $select_footer_logo);
   $footer_logos_assoc =mysqli_fetch_assoc($footer_logo);
 
+  $select_copy_count = "SELECT * FROM copyright WHERE status =1";
+  $select_copy_count_res = mysqli_query($db_connect,$select_copy_count);
+  $select_copy_count_assoc=mysqli_fetch_assoc($select_copy_count_res);
+
+
 ?>
 
 <!-- Footer start -->
@@ -17,7 +22,10 @@
 			</div>
 			<div class="col-lg-10">
 				<div class="text-right">
-					<p class="lead"><span class="text-color">Dreambuzz</span> © 2019 All Right Reserved Ratsaan.</p>
+        <p class="lead d-<?=(!$select_copy_count_assoc)?'none':''?>">
+            <a class="text-color" href="<?=$select_copy_count_assoc['action_link']?>"><?=$select_copy_count_assoc['action_name']?></a> 
+            <?=$select_copy_count_assoc['copy_text']?>
+          </p>
 					<a href="#top" class="backtop smoth-scroll"><i class="ti-angle-up"></i></a>
 				</div>
 			</div>

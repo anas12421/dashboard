@@ -120,6 +120,14 @@ if(in_array('portfolio',$after_explode_title)){
 
 }
 
+// copyright title
+if(in_array('copy',$after_explode_title)){
+	if(in_array('copyright',$explode_second)){
+		$title = 'Copyright Details';
+	}
+
+}
+
 
 
 
